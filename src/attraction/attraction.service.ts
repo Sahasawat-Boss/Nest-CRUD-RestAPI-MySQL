@@ -23,11 +23,14 @@ export class AttractionService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} attraction`;
+    return this.attractionRepository.findOneBy({id:id})
   }
 
   update(id: number, updateAttractionDto: UpdateAttractionDto) {
-    return `This action updates a #${id} attraction`;
+    const existingAttraction = await this.attractionRepository.findOneBy({ id:id })
+    attraction = {
+     //30
+    }
   }
 
   remove(id: number) {
