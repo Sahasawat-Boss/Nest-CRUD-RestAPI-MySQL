@@ -19,5 +19,4 @@ This project is a REST API built with NestJS and uses XAMPP for running a MySQL 
 
 ![Screenshot 2025-03-14 073842](https://github.com/user-attachments/assets/170b9bf2-1137-4d7e-a515-e7e12c530377)
 
-![Screenshot 2025-03-14 073907](https://github.com/user-attachments/assets/a3cbde6e-1b06-4174-b81f-3a01a62c7c08)
 
