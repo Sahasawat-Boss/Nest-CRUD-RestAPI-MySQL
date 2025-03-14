@@ -10,8 +10,9 @@ export class AttractionService {
   constructor(
     @InjectRepository(Attraction)
     private attractionRepository: Repository<Attraction>,
-  ){}
+  ) { }
 
+  //Create
   async create(createAttractionDto: CreateAttractionDto) {
     const attraction = await this.attractionRepository.create(createAttractionDto)
     const toCreate = await this.attractionRepository.insert(attraction)
@@ -23,18 +24,29 @@ export class AttractionService {
   }
 
   findOne(id: number) {
-    return this.attractionRepository.findOneBy({id:id})
+    return this.attractionRepository.findOneBy({ id: id })
   }
 
-  update(id: number, updateAttractionDto: UpdateAttractionDto) {
-    const existingAttraction = await this.attractionRepository.findOneBy({ id:id })
-    attraction = {
-     //30
+  //Update
+  async update(id: number, updateAttractionDto: UpdateAttractionDto) {
+    let attraction = await this.attractionRepository.findOneBy({ id });
+
+    if (!attraction) {
+      throw new Error(`Attraction with ID ${id} not found`);
     }
+
+    attraction = { ...attraction, ...updateAttractionDto };
+
+    // Ensure `id` is always set
+    attraction.id = id;
+
+    return await this.attractionRepository.save(attraction);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} attraction`;
+
+  async remove(id: number) {
+    const todelete = await this.attractionRepository.delete(id)
+    return todelete;
   }
 }
 
